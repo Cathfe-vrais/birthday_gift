@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Твой подарок</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f3eee7;
+      color: #222;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 0 0 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      margin-bottom: 30px;
+      opacity: 0.7;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 20px;
+      min-height: 150px;
+      background: white;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      font-size: 22px;
+      cursor: pointer;
+      transition: all 0.5s ease;
+    }
+
+    .card:active {
+      transform: scale(0.97);
+    }
+
+    .card.hidden {
+      opacity: 0;
+      transform: scale(0.7);
+      pointer-events: none;
+      height: 0;
+      min-height: 0;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .card.selected {
+      transform: scale(1.03);
+    }
+
+    .number {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .result {
+      display: none;
+      animation: appear 0.8s ease forwards;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    .info {
+      background: white;
+      border-radius: 20px;
+      padding: 25px 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .info p {
+      margin: 14px 0;
+      font-size: 18px;
+    }
+
+    .date {
+      font-size: 25px !important;
+      font-weight: bold;
+    }
+
+    .secret {
+      margin-top: 25px !important;
+      font-style: italic;
+      opacity: 0.7;
+      line-height: 1.5;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div id="startScreen">
+
+      <h1>Выбери свой подарок 🎁</h1>
+
+      <div class="subtitle">
+        Только один. Доверься интуиции.
+      </div>
+
+      <div class="cards">
+
+        <button class="card" onclick="chooseGift(1)">
+          <div class="number">Ⅰ</div>
+          Подарок №1
+        </button>
+
+        <button class="card" onclick="chooseGift(2)">
+          <div class="number">Ⅱ</div>
+          Подарок №2
+        </button>
+
+        <button class="card" onclick="chooseGift(3)">
+          <div class="number">Ⅲ</div>
+          Подарок №3
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div id="result" class="result">
+
+      <h2>Твой выбор сделан ✨</h2>
+
+      <div class="info">
+
+        <p class="date">5 сентября · 19:00</p>
+
+        <p>📍 Санкт-Петербург</p>
+
+        <p>Адрес: здесь будет адрес</p>
+
+        <p>Будь в этом месте точно к назначенному времени.</p>
+
+        <p class="secret">
+          Что именно тебя там ждёт — пока секрет.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    // Подключаем Telegram Mini App
+    const tg = window.Telegram.WebApp;
+
+    tg.ready();
+    tg.expand();
+
+
+    function chooseGift(number) {
+
+      const cards = document.querySelectorAll(".card");
+
+      cards.forEach((card, index) => {
+
+        if (index === number - 1) {
+          card.classList.add("selected");
+        } else {
+          card.classList.add("hidden");
+        }
+
+      });
+
+      setTimeout(() => {
+
+        document.getElementById("startScreen").style.display = "none";
+
+        document.getElementById("result").classList.add("show");
+
+      }, 700);
+
+    }
+
+  </script>
+
+</body>
+</html>
