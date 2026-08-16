@@ -23,9 +23,9 @@
 
     .container {
       width: 100%;
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
-      padding: 35px 18px;
+      padding: 30px 16px;
       text-align: center;
     }
 
@@ -50,10 +50,10 @@
       width: 100%;
       padding: 0;
       border: 0;
-      border-radius: 22px;
+      border-radius: 20px;
       overflow: hidden;
       background: white;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
       cursor: pointer;
       transition: all 0.6s ease;
     }
@@ -61,12 +61,12 @@
     .card img {
       display: block;
       width: 100%;
-      height: 190px;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
     }
 
     .card-title {
-      padding: 15px;
+      padding: 14px;
       font-size: 18px;
     }
 
@@ -76,6 +76,7 @@
       max-height: 0;
       margin: 0;
       pointer-events: none;
+      overflow: hidden;
     }
 
     .card.selected {
@@ -100,7 +101,7 @@
       background: white;
       border-radius: 22px;
       padding: 28px 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
     }
 
     .date {
@@ -150,24 +151,23 @@
       <div class="cards">
 
         <button class="card" onclick="chooseGift(1)">
-          <img src="IMG_20260816_172836.png" alt="Подарок 1">
+          <img src="03968e67-1cba-4f3a-a979-e55ffd8fa4d3.png" alt="Подарок 1">
           <div class="card-title">Выбрать</div>
         </button>
 
         <button class="card" onclick="chooseGift(2)">
-          <img src="IMG_20260816_172904.png" alt="Подарок 2">
+          <img src="23492d5a-0d37-47df-9001-7e77c6026348.png" alt="Подарок 2">
           <div class="card-title">Выбрать</div>
         </button>
 
         <button class="card" onclick="chooseGift(3)">
-          <img src="IMG_20260816_172922.png" alt="Подарок 3">
+          <img src="82d72417-2606-4d25-85c1-1e5b94672d93.png" alt="Подарок 3">
           <div class="card-title">Выбрать</div>
         </button>
 
       </div>
 
     </div>
-
 
     <div id="result" class="result">
 
@@ -192,7 +192,6 @@
     </div>
 
   </div>
-
 
   <script>
 
