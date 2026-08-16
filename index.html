@@ -19,113 +19,114 @@
       background: #f3eee7;
       color: #222;
       font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .container {
       width: 100%;
-      max-width: 500px;
-      padding: 30px 20px;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 35px 18px;
       text-align: center;
     }
 
     h1 {
       font-size: 28px;
-      margin: 0 0 10px;
+      margin: 10px 0 8px;
     }
 
     .subtitle {
       font-size: 16px;
-      margin-bottom: 30px;
-      opacity: 0.7;
+      opacity: 0.65;
+      margin-bottom: 28px;
     }
 
     .cards {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
     }
 
     .card {
-      border: none;
-      border-radius: 20px;
-      min-height: 150px;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      border-radius: 22px;
+      overflow: hidden;
       background: white;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      font-size: 22px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.10);
       cursor: pointer;
-      transition: all 0.5s ease;
+      transition: all 0.6s ease;
     }
 
-    .card:active {
-      transform: scale(0.97);
+    .card img {
+      display: block;
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .card-title {
+      padding: 15px;
+      font-size: 18px;
     }
 
     .card.hidden {
       opacity: 0;
       transform: scale(0.7);
-      pointer-events: none;
-      height: 0;
-      min-height: 0;
-      padding: 0;
+      max-height: 0;
       margin: 0;
-      overflow: hidden;
+      pointer-events: none;
     }
 
     .card.selected {
-      transform: scale(1.03);
-    }
-
-    .number {
-      font-size: 42px;
-      margin-bottom: 12px;
+      transform: scale(1.02);
     }
 
     .result {
       display: none;
-      animation: appear 0.8s ease forwards;
     }
 
     .result.show {
       display: block;
+      animation: appear 0.8s ease;
     }
 
     .result h2 {
       font-size: 28px;
-      margin-bottom: 25px;
+      margin: 15px 0 28px;
     }
 
     .info {
       background: white;
-      border-radius: 20px;
-      padding: 25px 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    }
-
-    .info p {
-      margin: 14px 0;
-      font-size: 18px;
+      border-radius: 22px;
+      padding: 28px 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.10);
     }
 
     .date {
-      font-size: 25px !important;
+      font-size: 25px;
       font-weight: bold;
+      margin: 0 0 22px;
+    }
+
+    .info p {
+      font-size: 18px;
+      line-height: 1.5;
+      margin: 14px 0;
     }
 
     .secret {
-      margin-top: 25px !important;
+      margin-top: 28px !important;
       font-style: italic;
-      opacity: 0.7;
-      line-height: 1.5;
+      opacity: 0.65;
     }
 
     @keyframes appear {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(25px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -143,24 +144,24 @@
       <h1>Выбери свой подарок 🎁</h1>
 
       <div class="subtitle">
-        Только один. Доверься интуиции.
+        Доверься своей интуиции
       </div>
 
       <div class="cards">
 
         <button class="card" onclick="chooseGift(1)">
-          <div class="number">Ⅰ</div>
-          Подарок №1
+          <img src="IMG_20260816_172836.png" alt="Подарок 1">
+          <div class="card-title">Выбрать</div>
         </button>
 
         <button class="card" onclick="chooseGift(2)">
-          <div class="number">Ⅱ</div>
-          Подарок №2
+          <img src="IMG_20260816_172904.png" alt="Подарок 2">
+          <div class="card-title">Выбрать</div>
         </button>
 
         <button class="card" onclick="chooseGift(3)">
-          <div class="number">Ⅲ</div>
-          Подарок №3
+          <img src="IMG_20260816_172922.png" alt="Подарок 3">
+          <div class="card-title">Выбрать</div>
         </button>
 
       </div>
@@ -180,10 +181,10 @@
 
         <p>Адрес: здесь будет адрес</p>
 
-        <p>Будь в этом месте точно к назначенному времени.</p>
+        <p>Будь там точно к назначенному времени.</p>
 
         <p class="secret">
-          Что именно тебя там ждёт — пока секрет.
+          А что именно тебя ждёт — узнаешь на месте.
         </p>
 
       </div>
@@ -195,12 +196,12 @@
 
   <script>
 
-    // Подключаем Telegram Mini App
     const tg = window.Telegram.WebApp;
 
-    tg.ready();
-    tg.expand();
-
+    if (tg) {
+      tg.ready();
+      tg.expand();
+    }
 
     function chooseGift(number) {
 
@@ -216,14 +217,13 @@
 
       });
 
-      setTimeout(() => {
+      setTimeout(function() {
 
         document.getElementById("startScreen").style.display = "none";
 
         document.getElementById("result").classList.add("show");
 
       }, 700);
-
     }
 
   </script>
