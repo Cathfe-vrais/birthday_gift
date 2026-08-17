@@ -8,7 +8,6 @@
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <!-- Шрифт в стиле модерн -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
@@ -135,6 +134,10 @@
       margin: 14px 0;
     }
 
+    .hint {
+      margin-top: 25px !important;
+    }
+
     .secret {
       margin-top: 28px !important;
       font-style: italic;
@@ -158,6 +161,8 @@
 <body>
 
   <div class="container">
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
 
     <div id="startScreen">
 
@@ -188,22 +193,21 @@
 
     </div>
 
+
+    <!-- ЭКРАН ПОСЛЕ ВЫБОРА -->
+
     <div id="result" class="result">
 
       <h2>Твой выбор сделан</h2>
 
       <div class="info">
 
-        <p class="date">5 сентября · 19:00</p>
+        <p class="date" id="giftDate"></p>
 
-        <p>📍 Санкт-Петербург</p>
-
-        <p>Адрес: здесь будет адрес</p>
-
-        <p>Будь там точно к назначенному времени.</p>
+        <p class="hint" id="giftHint"></p>
 
         <p class="secret">
-          А что именно тебя ждёт — узнаешь на месте.
+          Остальное узнаешь на месте.
         </p>
 
       </div>
@@ -211,6 +215,7 @@
     </div>
 
   </div>
+
 
   <script>
 
@@ -220,6 +225,7 @@
       tg.ready();
       tg.expand();
     }
+
 
     function chooseGift(number) {
 
@@ -235,13 +241,49 @@
 
       });
 
+
       setTimeout(function() {
 
         document.getElementById("startScreen").style.display = "none";
 
+        const date = document.getElementById("giftDate");
+        const hint = document.getElementById("giftHint");
+
+
+        if (number === 1) {
+
+          date.innerHTML = "16 / 17 / 18 сентября — выбирай день<br>11:15";
+
+          hint.innerHTML =
+            "Огонь. Аромат. Твоя маленькая алхимия.";
+
+        }
+
+
+        if (number === 2) {
+
+          date.innerHTML = "17 / 24 сентября — выбирай день<br>11:00";
+
+          hint.innerHTML =
+            "То, что невозможно увидеть,<br>но можно запомнить навсегда.";
+
+        }
+
+
+        if (number === 3) {
+
+          date.innerHTML = "14 / 17 сентября — выбирай день<br>11:00";
+
+          hint.innerHTML =
+            "Иногда самые важные слова<br>лучше оставить на память.";
+
+        }
+
+
         document.getElementById("result").classList.add("show");
 
       }, 700);
+
     }
 
   </script>
